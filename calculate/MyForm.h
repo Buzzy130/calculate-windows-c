@@ -1,4 +1,8 @@
 #pragma once
+#include "Fraction.h"
+#include <regex>
+
+Fraction memory(0, 1);//под память глобальная переменная
 
 namespace calculate {
 
@@ -63,6 +67,11 @@ namespace calculate {
 	private: System::Windows::Forms::Button^ button26;
 	private: System::Windows::Forms::Button^ button27;
 	private: System::Windows::Forms::Button^ button28;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ button29;
+	private: System::Windows::Forms::Button^ button30;
+
 
 	protected:
 
@@ -114,6 +123,10 @@ namespace calculate {
 			this->button26 = (gcnew System::Windows::Forms::Button());
 			this->button27 = (gcnew System::Windows::Forms::Button());
 			this->button28 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button29 = (gcnew System::Windows::Forms::Button());
+			this->button30 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -137,12 +150,15 @@ namespace calculate {
 			this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
 			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button2->Location = System::Drawing::Point(100, 582);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(91, 72);
 			this->button2->TabIndex = 1;
+			this->button2->Text = L"0";
 			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button3
 			// 
@@ -170,6 +186,7 @@ namespace calculate {
 			this->button4->Size = System::Drawing::Size(91, 72);
 			this->button4->TabIndex = 3;
 			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// button5
 			// 
@@ -178,12 +195,16 @@ namespace calculate {
 			this->button5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button5.BackgroundImage")));
 			this->button5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button5->Location = System::Drawing::Point(3, 503);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(91, 72);
 			this->button5->TabIndex = 4;
+			this->button5->Text = L"1";
+			this->button5->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button5->UseVisualStyleBackColor = false;
-			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
+			this->button5->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button6
 			// 
@@ -192,12 +213,16 @@ namespace calculate {
 			this->button6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button6.BackgroundImage")));
 			this->button6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button6->Location = System::Drawing::Point(100, 503);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(91, 72);
 			this->button6->TabIndex = 5;
+			this->button6->Text = L"2";
+			this->button6->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->button6->UseVisualStyleBackColor = false;
-			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
+			this->button6->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button7
 			// 
@@ -206,12 +231,16 @@ namespace calculate {
 			this->button7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button7.BackgroundImage")));
 			this->button7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button7->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button7->Location = System::Drawing::Point(197, 503);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(91, 72);
 			this->button7->TabIndex = 6;
+			this->button7->Text = L"3";
+			this->button7->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button7->UseVisualStyleBackColor = false;
-			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
+			this->button7->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button8
 			// 
@@ -234,12 +263,16 @@ namespace calculate {
 			this->button9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button9.BackgroundImage")));
 			this->button9->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button9->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button9->Location = System::Drawing::Point(3, 425);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(91, 72);
 			this->button9->TabIndex = 8;
+			this->button9->Text = L"4";
+			this->button9->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button9->UseVisualStyleBackColor = false;
-			this->button9->Click += gcnew System::EventHandler(this, &MyForm::button9_Click);
+			this->button9->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button10
 			// 
@@ -248,12 +281,16 @@ namespace calculate {
 			this->button10->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button10.BackgroundImage")));
 			this->button10->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button10->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button10->Location = System::Drawing::Point(100, 425);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(91, 72);
 			this->button10->TabIndex = 9;
+			this->button10->Text = L"5";
+			this->button10->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button10->UseVisualStyleBackColor = false;
-			this->button10->Click += gcnew System::EventHandler(this, &MyForm::button10_Click);
+			this->button10->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button11
 			// 
@@ -262,12 +299,16 @@ namespace calculate {
 			this->button11->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button11.BackgroundImage")));
 			this->button11->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button11->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->button11->Location = System::Drawing::Point(197, 425);
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(91, 72);
 			this->button11->TabIndex = 10;
+			this->button11->Text = L"6";
+			this->button11->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button11->UseVisualStyleBackColor = false;
-			this->button11->Click += gcnew System::EventHandler(this, &MyForm::button11_Click);
+			this->button11->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button12
 			// 
@@ -290,12 +331,16 @@ namespace calculate {
 			this->button13->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button13.BackgroundImage")));
 			this->button13->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button13->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(50)));
 			this->button13->Location = System::Drawing::Point(3, 347);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(91, 72);
 			this->button13->TabIndex = 12;
+			this->button13->Text = L"7";
+			this->button13->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button13->UseVisualStyleBackColor = false;
-			this->button13->Click += gcnew System::EventHandler(this, &MyForm::button13_Click);
+			this->button13->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button14
 			// 
@@ -304,12 +349,16 @@ namespace calculate {
 			this->button14->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button14.BackgroundImage")));
 			this->button14->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button14->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(50)));
 			this->button14->Location = System::Drawing::Point(100, 347);
 			this->button14->Name = L"button14";
 			this->button14->Size = System::Drawing::Size(91, 72);
 			this->button14->TabIndex = 13;
+			this->button14->Text = L"8";
+			this->button14->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button14->UseVisualStyleBackColor = false;
-			this->button14->Click += gcnew System::EventHandler(this, &MyForm::button14_Click);
+			this->button14->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button15
 			// 
@@ -318,12 +367,16 @@ namespace calculate {
 			this->button15->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button15.BackgroundImage")));
 			this->button15->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button15->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button15->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(50)));
 			this->button15->Location = System::Drawing::Point(197, 347);
 			this->button15->Name = L"button15";
 			this->button15->Size = System::Drawing::Size(91, 72);
 			this->button15->TabIndex = 14;
+			this->button15->Text = L"9";
+			this->button15->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->button15->UseVisualStyleBackColor = false;
-			this->button15->Click += gcnew System::EventHandler(this, &MyForm::button15_Click);
+			this->button15->Click += gcnew System::EventHandler(this, &MyForm::BtnNumberClicked);
 			// 
 			// button16
 			// 
@@ -360,6 +413,7 @@ namespace calculate {
 			// 
 			this->button18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(50)),
 				static_cast<System::Int32>(static_cast<System::Byte>(50)));
+			this->button18->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button18.BackgroundImage")));
 			this->button18->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->button18->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button18->Location = System::Drawing::Point(100, 269);
@@ -375,7 +429,7 @@ namespace calculate {
 				static_cast<System::Int32>(static_cast<System::Byte>(50)));
 			this->button19->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button19.BackgroundImage")));
 			this->button19->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->button19->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button19->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button19->ForeColor = System::Drawing::Color::White;
 			this->button19->Location = System::Drawing::Point(197, 269);
 			this->button19->Name = L"button19";
@@ -402,7 +456,7 @@ namespace calculate {
 			// 
 			this->textBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(10)), static_cast<System::Int32>(static_cast<System::Byte>(10)),
 				static_cast<System::Int32>(static_cast<System::Byte>(10)));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->textBox1->ForeColor = System::Drawing::Color::White;
@@ -414,6 +468,7 @@ namespace calculate {
 			this->textBox1->Text = L"0";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
+			this->textBox1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::textBox1_KeyPress);
 			// 
 			// button21
 			// 
@@ -469,6 +524,7 @@ namespace calculate {
 			this->button24->TabIndex = 24;
 			this->button24->Text = L"MC";
 			this->button24->UseVisualStyleBackColor = false;
+			this->button24->Click += gcnew System::EventHandler(this, &MyForm::button24_Click);
 			// 
 			// button25
 			// 
@@ -528,6 +584,61 @@ namespace calculate {
 			this->button28->TabIndex = 28;
 			this->button28->Text = L"MS";
 			this->button28->UseVisualStyleBackColor = false;
+			this->button28->Click += gcnew System::EventHandler(this, &MyForm::button28_Click);
+			// 
+			// label1
+			// 
+			this->label1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->ForeColor = System::Drawing::Color::White;
+			this->label1->Location = System::Drawing::Point(104, 40);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(139, 42);
+			this->label1->TabIndex = 29;
+			this->label1->Text = L"0";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::TopRight;
+			// 
+			// label2
+			// 
+			this->label2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->ForeColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(0, 40);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(112, 42);
+			this->label2->TabIndex = 30;
+			this->label2->Text = L"Память:";
+			this->label2->TextAlign = System::Drawing::ContentAlignment::TopRight;
+			// 
+			// button29
+			// 
+			this->button29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(10)), static_cast<System::Int32>(static_cast<System::Byte>(10)),
+				static_cast<System::Int32>(static_cast<System::Byte>(10)));
+			this->button29->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->button29->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button29->ForeColor = System::Drawing::Color::White;
+			this->button29->Location = System::Drawing::Point(170, 85);
+			this->button29->Name = L"button29";
+			this->button29->Size = System::Drawing::Size(40, 23);
+			this->button29->TabIndex = 31;
+			this->button29->Text = L"M-";
+			this->button29->UseVisualStyleBackColor = false;
+			// 
+			// button30
+			// 
+			this->button30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(10)), static_cast<System::Int32>(static_cast<System::Byte>(10)),
+				static_cast<System::Int32>(static_cast<System::Byte>(10)));
+			this->button30->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->button30->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button30->ForeColor = System::Drawing::Color::White;
+			this->button30->Location = System::Drawing::Point(203, 85);
+			this->button30->Name = L"button30";
+			this->button30->Size = System::Drawing::Size(40, 23);
+			this->button30->TabIndex = 32;
+			this->button30->Text = L"M+";
+			this->button30->UseVisualStyleBackColor = false;
 			// 
 			// MyForm
 			// 
@@ -538,6 +649,10 @@ namespace calculate {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->ClientSize = System::Drawing::Size(390, 659);
+			this->Controls->Add(this->button30);
+			this->Controls->Add(this->button29);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button28);
 			this->Controls->Add(this->button27);
 			this->Controls->Add(this->button26);
@@ -574,7 +689,7 @@ namespace calculate {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MyForm";
-			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Калькулятор";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
@@ -582,6 +697,90 @@ namespace calculate {
 
 		}
 #pragma endregion
+
+		int GCD(int a, int b) {
+			if (b == 0) {
+				return a;
+			}
+			else {
+				return GCD(b, a % b);
+			}
+		}
+
+private: System::Void textBox1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	// Проверяем, является ли нажатый символ цифрой, Backspace или "|"
+	if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 8 && e->KeyChar != '|') {
+		// Если символ не является цифрой, Backspace или "|", отменяем его ввод
+		e->Handled = true;
+	}
+}
+
+	private: System::Void BtnNumberClicked(System::Object^ sender, System::EventArgs^ e) {
+
+		Button^ button = safe_cast<Button^>(sender);
+		//this->textBox1->Text = button->Text;
+		if (this->textBox1->Text == "0")
+			this->textBox1->Text = button->Text;
+		else
+			this->textBox1->Text = this->textBox1->Text + button->Text;
+	}
+
+public: System :: String^ Out(String^ textBoxContent)
+{
+	// Разбиваем строку на отдельные дроби с учетом всех операторов: +, -, /, *
+	array<String^>^ parts = textBoxContent->Split(gcnew array<Char>{'+', '-', '/', '*'});
+
+	Fraction fraction1(0, 1);
+	Fraction fraction2(0, 1);
+	Fraction result(0, 1); // Начальное значение результата
+
+	int i = 0;
+	for each (String ^ part in parts) {
+		array<String^>^ fractionParts = part->Split('|'); // Разбиваем каждую дробь по знаку '|'
+
+		if (fractionParts->Length == 2 ) {
+			if (i == 0) {
+				fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+			}
+			else if (i == 1) {
+				fraction2 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+			}
+			i++;
+		}
+		else {
+			MessageBox::Show("Некорректный формат дроби. Ожидается 'числитель|знаменатель'");
+		}
+	}
+
+	// Выполняем операцию в зависимости от знака
+	if (textBoxContent->Contains("+")) {
+		result = fraction1 + fraction2;
+	}
+	else if (textBoxContent->Contains("-")) {
+		result = fraction1 - fraction2;
+	}
+	else if (textBoxContent->Contains("*")) {
+		result = fraction1 * fraction2;
+	}
+	else if (textBoxContent->Contains("/")) {
+		result = fraction1 / fraction2;
+	}
+
+	// Находим наибольший общий делитель (НОД) числителя и знаменателя
+	int gcd = GCD(result.getNumerator(), result.getDenominator());
+
+	// Сокращаем дробь, разделяя числитель и знаменатель на НОД
+	result.setNumerator(result.getNumerator() / gcd);
+	result.setDenominator(result.getDenominator() / gcd);
+
+	// Преобразуем числитель и знаменатель в строку и выводим результат в textBox1
+	String^ resultString = result.getNumerator().ToString() + "|" + result.getDenominator().ToString();
+	return resultString;
+}
+
+
+
+
 	private: System::Void customizeDesign()
 	{
 
@@ -589,62 +788,196 @@ namespace calculate {
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		this->textBox1->Text = this->textBox1->Text + "0";
-	}
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 	}
-	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "2";
-	}
-	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "1";
-	}
-	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "3";
-	}
-	private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "6";
-	}
-	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "5";
-	}
-	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "4";
-	}
-	private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "7";
-	}
-	private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "8";
-	}
-	private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "9";
-	}
+
 	private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "/";
+		int index = this->textBox1->Text->IndexOf("|");
+		int index2 = this->textBox1->Text->IndexOf("/");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0' ||
+			index2 != -1 && index2 + 1 < this->textBox1->Text->Length && this->textBox1->Text[index2 + 1] == '0')
+		{
+			// Символ "0" найден после знака "|"
+			MessageBox::Show("На 0 делить нельзя");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				String^ resultString = Out(textBoxContent);
+				this->textBox1->Text = resultString + "/";
+			}
+			else
+			{
+				this->textBox1->Text = this->textBox1->Text + "/";
+			}
+		}
 	}
-	private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {//корень
+			System::String^ text = textBox1->Text;
+
+			// Подсчитываем количество вхождений символа "|"
+			int count = 0;
+			for (int i = 0; i < text->Length; i++) {
+				if (text[i] == '|') {
+					count++;
+				}
+			}
+
+			// Проверяем условие на единственное вхождение символа "|"
+			if (count == 1) {
+				int index = this->textBox1->Text->IndexOf("|");
+				if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0')
+				{
+					MessageBox::Show("На 0 делить нельзя");
+				}
+				else
+				{
+					String^ textBoxContent = this->textBox1->Text;
+					if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+					{
+						MessageBox::Show("Число должно быть формата: Числитель|Знаменатель");
+					}
+					else
+					{
+						//выполнить действие с корнем
+						Fraction fraction1(0, 1);
+						array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
+						fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+						fraction1 = fraction1.squareRoot();
+						String^ resultString = fraction1.getNumerator().ToString() + "|" + fraction1.getDenominator().ToString();
+						textBox1->Text = resultString;
+
+					}
+				}
+
+			}
+			else {
+				MessageBox::Show("Число должно быть формата: Числитель|Знаменатель");
+			}
 	}
-	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {//квадрат
+		System::String^ text = textBox1->Text;
+
+		// Подсчитываем количество вхождений символа "|"
+		int count = 0;
+		for (int i = 0; i < text->Length; i++) {
+			if (text[i] == '|') {
+				count++;
+			}
+		}
+
+		// Проверяем условие на единственное вхождение символа "|"
+		if (count == 1) {
+			int index = this->textBox1->Text->IndexOf("|");
+			if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0')
+			{
+				MessageBox::Show("На 0 делить нельзя");
+			}
+			else
+			{
+				String^ textBoxContent = this->textBox1->Text;
+				if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+				{
+					MessageBox::Show("Число должно быть формата: Числитель|Знаменатель");
+				}
+				else
+				{
+					//выполнить действие с корнем
+					Fraction fraction1(0, 1);
+					array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
+					fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+					fraction1 = fraction1.square();
+					String^ resultString = fraction1.getNumerator().ToString() + "|" + fraction1.getDenominator().ToString();
+					textBox1->Text = resultString;
+
+				}
+			}
+
+		}
+		else {
+			MessageBox::Show("Число должно быть формата: Числитель|Знаменатель");
+		}
 	}
 	private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->textBox1->Text = this->textBox1->Text + "|";
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + ".";
+		MessageBox::Show("В данной версии калькулятора . не доступна ");
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "+";
+		int index = this->textBox1->Text->IndexOf("|");
+		int index2 = this->textBox1->Text->IndexOf("/");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0' ||
+			index2 != -1 && index2 + 1 < this->textBox1->Text->Length && this->textBox1->Text[index2 + 1] == '0')
+		{
+			// Символ "0" найден после знака "|"
+			MessageBox::Show("На 0 делить нельзя");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Substring(1)->Contains("+") || textBoxContent->Substring(1)->Contains("-") || textBoxContent->Substring(1)->Contains("*") || textBoxContent->Substring(1)->Contains("/"))
+			{
+				String^ resultString = Out(textBoxContent);
+				this->textBox1->Text = resultString + "+";
+			}
+			else
+			{
+				this->textBox1->Text = this->textBox1->Text + "+";
+			}
+		}
+
 	}
 	private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "-";
+		int index = this->textBox1->Text->IndexOf("|");
+		int index2 = this->textBox1->Text->IndexOf("/");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0' ||
+			index2 != -1 && index2 + 1 < this->textBox1->Text->Length && this->textBox1->Text[index2 + 1] == '0')
+		{
+			// Символ "0" найден после знака "|"
+			MessageBox::Show("На 0 делить нельзя");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				String^ resultString = Out(textBoxContent);
+				this->textBox1->Text = resultString + "-";
+			}
+			else
+			{
+				this->textBox1->Text = this->textBox1->Text + "-";
+			}
+		}
 	}
 	private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = this->textBox1->Text + "*";
+		int index = this->textBox1->Text->IndexOf("|");
+		int index2 = this->textBox1->Text->IndexOf("/");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0' ||
+			index2 != -1 && index2 + 1 < this->textBox1->Text->Length && this->textBox1->Text[index2 + 1] == '0')
+		{
+			// Символ "0" найден после знака "|"
+			MessageBox::Show("На 0 делить нельзя");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				String^ resultString = Out(textBoxContent);
+				this->textBox1->Text = resultString + "*";
+			}
+			else
+			{
+				this->textBox1->Text = this->textBox1->Text + "*";
+			}
+		}
 	}
 	private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
@@ -692,18 +1025,37 @@ private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ 
 }
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (this->textBox1->Text->Length > 0)
+	if (this->textBox1->Text->Contains("+"))
 	{
-		if (this->textBox1->Text[0] != '-')
-		{
-			textBox1->Text = "-" + textBox1->Text;
-		}
-		else
-		{
-			if (textBox1->Text->Length > 0)
-				textBox1->Text = textBox1->Text->Remove(0, 1);
-		}
+		this->textBox1->Text = this->textBox1->Text->Replace("+", "-");
 	}
+	else if (this->textBox1->Text->Contains("-"))
+	{
+		this->textBox1->Text = this->textBox1->Text->Replace("-", "+");
+	}
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	int index = this->textBox1->Text->IndexOf("|");
+	int index2 = this->textBox1->Text->IndexOf("/");
+	if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0' || 
+		index2 != -1 && index2 + 1 < this->textBox1->Text->Length && this->textBox1->Text[index2 + 1] == '0')
+	{
+		// Символ "0" найден после знака "|"
+		MessageBox::Show("На 0 делить нельзя");
+	}
+	else
+	{
+		String^ resultString = Out(this->textBox1->Text);
+
+		this->textBox1->Text = resultString;
+	}
+}
+private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {
+	label1->Text = textBox1->Text;
+}
+private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
+	label1->Text = "0";
+	memory = (0, 1);
 }
 };
 }
