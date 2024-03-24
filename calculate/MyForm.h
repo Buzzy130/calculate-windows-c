@@ -598,6 +598,7 @@ namespace calculate {
 			this->label1->TabIndex = 29;
 			this->label1->Text = L"0";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::TopRight;
+			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -625,6 +626,7 @@ namespace calculate {
 			this->button29->TabIndex = 31;
 			this->button29->Text = L"M-";
 			this->button29->UseVisualStyleBackColor = false;
+			this->button29->Click += gcnew System::EventHandler(this, &MyForm::button29_Click);
 			// 
 			// button30
 			// 
@@ -639,6 +641,7 @@ namespace calculate {
 			this->button30->TabIndex = 32;
 			this->button30->Text = L"M+";
 			this->button30->UseVisualStyleBackColor = false;
+			this->button30->Click += gcnew System::EventHandler(this, &MyForm::button30_Click);
 			// 
 			// MyForm
 			// 
@@ -1050,12 +1053,151 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		this->textBox1->Text = resultString;
 	}
 }
-private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {
-	label1->Text = textBox1->Text;
+private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {//вставить в память
+
+	System::String^ text = textBox1->Text;
+
+	// Подсчитываем количество вхождений символа "|"
+	int count = 0;
+	for (int i = 0; i < text->Length; i++) {
+		if (text[i] == '|') {
+			count++;
+		}
+	}
+
+	// Проверяем условие на единственное вхождение символа "|"
+	if (count == 1) {
+		int index = this->textBox1->Text->IndexOf("|");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0')
+		{
+			MessageBox::Show("Числа 0 не должно быть в знаменателе");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для занесения в память");
+			}
+			else
+			{
+				//выполнить действие с корнем
+				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
+				memory = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				label1->Text = textBox1->Text;
+			}
+		}
+
+	}
+	else {
+		MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для занесения в память");
+	}
+			
+		
 }
 private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
 	label1->Text = "0";
 	memory = (0, 1);
+}
+private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ e) {//+ память
+	System::String^ text = textBox1->Text;
+
+	// Подсчитываем количество вхождений символа "|"
+	int count = 0;
+	for (int i = 0; i < text->Length; i++) {
+		if (text[i] == '|') {
+			count++;
+		}
+	}
+
+	// Проверяем условие на единственное вхождение символа "|"
+	if (count == 1) {
+		int index = this->textBox1->Text->IndexOf("|");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0')
+		{
+			MessageBox::Show("Числа 0 не должно быть в знаменателе");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для выполнения операции");
+			}
+			else
+			{
+				//выполнить действие с корнем
+				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
+				Fraction fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				memory = memory + fraction1;
+
+				// Находим наибольший общий делитель (НОД) числителя и знаменателя
+				int gcd = GCD(memory.getNumerator(), memory.getDenominator());
+
+				// Сокращаем дробь, разделяя числитель и знаменатель на НОД
+				memory.setNumerator(memory.getNumerator() / gcd);
+				memory.setDenominator(memory.getDenominator() / gcd);
+
+				String^ resultString = memory.getNumerator().ToString() + "|" + memory.getDenominator().ToString();
+				label1->Text = resultString;
+			}
+		}
+
+	}
+	else {
+		MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для выполнения операции");
+	}
+}
+private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ e) {//минус память
+	System::String^ text = textBox1->Text;
+
+	// Подсчитываем количество вхождений символа "|"
+	int count = 0;
+	for (int i = 0; i < text->Length; i++) {
+		if (text[i] == '|') {
+			count++;
+		}
+	}
+
+	// Проверяем условие на единственное вхождение символа "|"
+	if (count == 1) {
+		int index = this->textBox1->Text->IndexOf("|");
+		if (index != -1 && index + 1 < this->textBox1->Text->Length && this->textBox1->Text[index + 1] == '0')
+		{
+			MessageBox::Show("Числа 0 не должно быть в знаменателе");
+		}
+		else
+		{
+			String^ textBoxContent = this->textBox1->Text;
+			if (textBoxContent->Contains("+") || textBoxContent->Contains("-") || textBoxContent->Contains("*") || textBoxContent->Contains("/"))
+			{
+				MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для выполнения операции");
+			}
+			else
+			{
+				//выполнить действие с корнем
+				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
+				Fraction fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				memory = memory - fraction1;
+
+				// Находим наибольший общий делитель (НОД) числителя и знаменателя
+				int gcd = GCD(memory.getNumerator(), memory.getDenominator());
+
+				// Сокращаем дробь, разделяя числитель и знаменатель на НОД
+				memory.setNumerator(memory.getNumerator() / gcd);
+				memory.setDenominator(memory.getDenominator() / gcd);
+
+				String^ resultString = memory.getNumerator().ToString() + "|" + memory.getDenominator().ToString();
+				label1->Text = resultString;
+			}
+		}
+
+	}
+	else {
+		MessageBox::Show("Число должно быть формата: Числитель|Знаменатель для выполнения операции");
+	}
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

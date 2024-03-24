@@ -2,6 +2,8 @@
 #define FRACTION_H
 
 #include <iostream>
+#include <iostream>
+#include <string>
 #include <cmath>
 
 class Fraction {
