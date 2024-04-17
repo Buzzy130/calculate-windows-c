@@ -1,12 +1,12 @@
-#ifndef FRACTION_H
-#define FRACTION_H
+#ifndef FRACTION2_H
+#define FRACTION2_H
 
 #include <iostream>
 #include <iostream>
 #include <string>
 #include <cmath>
 
-class Fraction {
+class Fraction2 {
 private:
     int numerator;
     int denominator;
@@ -22,7 +22,7 @@ private:
 
 public:
     // Constructor
-    Fraction(int num = 0, int denom = 1);
+    Fraction2(int num = 0, int denom = 1);
 
     int getNumerator() const {
         return numerator;
@@ -47,16 +47,8 @@ public:
     }
 
     // Methods for addition, subtraction, multiplication, and division
-    Fraction operator+(const Fraction& other) const;
-    Fraction operator-(const Fraction& other) const;
-    Fraction operator*(const Fraction& other) const;
-    Fraction operator/(const Fraction& other) const;
-
-    // Method for squaring
-    Fraction square() const;
-
-    // Method for calculating square root
-    Fraction squareRoot() const;
+    Fraction2 operator+(const Fraction2& other) const;
+    Fraction2 operator-(const Fraction2& other) const;
 
     // Method for displaying the fraction
     void display() const;

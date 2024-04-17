@@ -1,8 +1,9 @@
 #pragma once
 #include "Fraction.h"
+#include "Fraction2.h"
 #include <regex>
 
-Fraction memory(0, 1);//под память глобальная переменная
+Fraction2 memory(0, 1);//под память глобальная переменная
 
 namespace calculate {
 
@@ -71,6 +72,7 @@ namespace calculate {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ button29;
 	private: System::Windows::Forms::Button^ button30;
+	private: System::Windows::Forms::Button^ button31;
 
 
 	protected:
@@ -127,6 +129,7 @@ namespace calculate {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button29 = (gcnew System::Windows::Forms::Button());
 			this->button30 = (gcnew System::Windows::Forms::Button());
+			this->button31 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -643,6 +646,21 @@ namespace calculate {
 			this->button30->UseVisualStyleBackColor = false;
 			this->button30->Click += gcnew System::EventHandler(this, &MyForm::button30_Click);
 			// 
+			// button31
+			// 
+			this->button31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(10)), static_cast<System::Int32>(static_cast<System::Byte>(10)),
+				static_cast<System::Int32>(static_cast<System::Byte>(10)));
+			this->button31->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->button31->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->button31->ForeColor = System::Drawing::Color::White;
+			this->button31->Location = System::Drawing::Point(239, 85);
+			this->button31->Name = L"button31";
+			this->button31->Size = System::Drawing::Size(40, 23);
+			this->button31->TabIndex = 33;
+			this->button31->Text = L"MV";
+			this->button31->UseVisualStyleBackColor = false;
+			this->button31->Click += gcnew System::EventHandler(this, &MyForm::button31_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
@@ -652,6 +670,7 @@ namespace calculate {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->ClientSize = System::Drawing::Size(390, 659);
+			this->Controls->Add(this->button31);
 			this->Controls->Add(this->button30);
 			this->Controls->Add(this->button29);
 			this->Controls->Add(this->label2);
@@ -701,14 +720,14 @@ namespace calculate {
 		}
 #pragma endregion
 
-		int GCD(int a, int b) {
+		/*int GCD(int a, int b) {
 			if (b == 0) {
 				return a;
 			}
 			else {
 				return GCD(b, a % b);
 			}
-		}
+		}*/
 
 private: System::Void textBox1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 	// Проверяем, является ли нажатый символ цифрой, Backspace или "|"
@@ -770,11 +789,11 @@ public: System :: String^ Out(String^ textBoxContent)
 	}
 
 	// Находим наибольший общий делитель (НОД) числителя и знаменателя
-	int gcd = GCD(result.getNumerator(), result.getDenominator());
+	//int gcd = GCD(result.getNumerator(), result.getDenominator());
 
 	// Сокращаем дробь, разделяя числитель и знаменатель на НОД
-	result.setNumerator(result.getNumerator() / gcd);
-	result.setDenominator(result.getDenominator() / gcd);
+	//result.setNumerator(result.getNumerator() / gcd);
+	//result.setDenominator(result.getDenominator() / gcd);
 
 	// Преобразуем числитель и знаменатель в строку и выводим результат в textBox1
 	String^ resultString = result.getNumerator().ToString() + "|" + result.getDenominator().ToString();
@@ -1083,7 +1102,7 @@ private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ 
 			{
 				//выполнить действие с корнем
 				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
-				memory = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				memory = Fraction2(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
 				label1->Text = textBox1->Text;
 			}
 		}
@@ -1128,15 +1147,15 @@ private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ 
 			{
 				//выполнить действие с корнем
 				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
-				Fraction fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
-				memory = memory + fraction1;
+				Fraction2 fraction2 = Fraction2(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				memory = memory + fraction2;
 
 				// Находим наибольший общий делитель (НОД) числителя и знаменателя
-				int gcd = GCD(memory.getNumerator(), memory.getDenominator());
+				//int gcd = GCD(memory.getNumerator(), memory.getDenominator());
 
 				// Сокращаем дробь, разделяя числитель и знаменатель на НОД
-				memory.setNumerator(memory.getNumerator() / gcd);
-				memory.setDenominator(memory.getDenominator() / gcd);
+				//memory.setNumerator(memory.getNumerator() / gcd);
+				//memory.setDenominator(memory.getDenominator() / gcd);
 
 				String^ resultString = memory.getNumerator().ToString() + "|" + memory.getDenominator().ToString();
 				label1->Text = resultString;
@@ -1177,15 +1196,15 @@ private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ 
 			{
 				//выполнить действие с корнем
 				array<String^>^ fractionParts = textBoxContent->Split('|'); // Разбиваем каждую дробь по знаку '|'
-				Fraction fraction1 = Fraction(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
-				memory = memory - fraction1;
+				Fraction2 fraction2 = Fraction2(Int32::Parse(fractionParts[0]), Int32::Parse(fractionParts[1]));
+				memory = memory - fraction2;
 
 				// Находим наибольший общий делитель (НОД) числителя и знаменателя
-				int gcd = GCD(memory.getNumerator(), memory.getDenominator());
+				//int gcd = GCD(memory.getNumerator(), memory.getDenominator());
 
 				// Сокращаем дробь, разделяя числитель и знаменатель на НОД
-				memory.setNumerator(memory.getNumerator() / gcd);
-				memory.setDenominator(memory.getDenominator() / gcd);
+				//memory.setNumerator(memory.getNumerator() / gcd);
+				//memory.setDenominator(memory.getDenominator() / gcd);
 
 				String^ resultString = memory.getNumerator().ToString() + "|" + memory.getDenominator().ToString();
 				label1->Text = resultString;
@@ -1198,6 +1217,26 @@ private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ 
 	}
 }
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button31_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (textBox1->Text == "") {
+		MessageBox::Show("Поле не должно быть пустым!");
+		return;
+	}
+
+	// Проверка последнего символа на оператор
+	String^ text = textBox1->Text;
+	char lastChar = text[text->Length - 1];
+
+	if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/') {
+		// Последний символ является оператором
+		// Можно продолжать выполнение операций
+		this->textBox1->Text = this->textBox1->Text + label1->Text;
+	}
+	else {
+		MessageBox::Show("Последний символ должен быть оператором (+, -, *, /)!");
+		return;
+	}
 }
 };
 }

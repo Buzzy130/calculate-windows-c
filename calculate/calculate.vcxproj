@@ -120,10 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="double.cpp" />
+    <ClCompile Include="Fraction2.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fraction.h" />
+    <ClInclude Include="Fraction2.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

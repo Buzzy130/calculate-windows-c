@@ -1,81 +1,64 @@
-#include <iostream>
 #include "Fraction.h"
 
-// Конструктор
+// Constructor
 Fraction::Fraction(int num, int denom) : numerator(num), denominator(denom) {}
 
-// Оператор сложения
+// Addition
 Fraction Fraction::operator+(const Fraction& other) const {
-    int num = numerator * other.denominator + other.numerator * denominator;
-    int denom = denominator * other.denominator;
-    return Fraction(num, denom);
+    int resultNumerator = numerator * other.denominator + other.numerator * denominator;
+    int resultDenominator = denominator * other.denominator;
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Оператор вычитания
+// Subtraction
 Fraction Fraction::operator-(const Fraction& other) const {
-    int num = numerator * other.denominator - other.numerator * denominator;
-    int denom = denominator * other.denominator;
-    return Fraction(num, denom);
+    int resultNumerator = numerator * other.denominator - other.numerator * denominator;
+    int resultDenominator = denominator * other.denominator;
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Оператор умножения
+// Multiplication
 Fraction Fraction::operator*(const Fraction& other) const {
-    int num = numerator * other.numerator;
-    int denom = denominator * other.denominator;
-    return Fraction(num, denom);
+    int resultNumerator = numerator * other.numerator;
+    int resultDenominator = denominator * other.denominator;
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Оператор деления
+// Division
 Fraction Fraction::operator/(const Fraction& other) const {
-    int num = numerator * other.denominator;
-    int denom = denominator * other.numerator;
-    return Fraction(num, denom);
+    int resultNumerator = numerator * other.denominator;
+    int resultDenominator = denominator * other.numerator;
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Способ возведения дроби в квадрат
+// Squaring
 Fraction Fraction::square() const {
-    return Fraction(numerator * numerator, denominator * denominator);
+    int resultNumerator = numerator * numerator;
+    int resultDenominator = denominator * denominator;
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Способ вычисления квадратного корня из дроби
+// Square Root
 Fraction Fraction::squareRoot() const {
-    return Fraction(sqrt(numerator), sqrt(denominator));
+    int resultNumerator = std::sqrt(numerator);
+    int resultDenominator = std::sqrt(denominator);
+    Fraction result(resultNumerator, resultDenominator);
+    result.reduce();
+    return result;
 }
 
-// Способ отображения дроби
+// Display
 void Fraction::display() const {
-    std::cout << numerator << "|" << denominator << std::endl;
+    std::cout << numerator << "/" << denominator << std::endl;
 }
 
-/*int main() {
-    Fraction fraction1(1, 2);
-    Fraction fraction2(3, 4);
-
-    Fraction resultAdd = fraction1 + fraction2;
-    Fraction resultSubtract = fraction1 - fraction2;
-    Fraction resultMultiply = fraction1 * fraction2;
-    Fraction resultDivide = fraction1 / fraction2;
-
-    std::cout << "Результат сложения: ";
-    resultAdd.display();
-
-    std::cout << "Результат вычитания: ";
-    resultSubtract.display();
-
-    std::cout << "Результат умножения: ";
-    resultMultiply.display();
-
-    std::cout << "Результат деления: ";
-    resultDivide.display();
-
-    Fraction squared = fraction1.square();
-    Fraction squareRooted = fraction2.squareRoot();
-
-    std::cout << "Square of fraction1: ";
-    squared.display();
-
-    std::cout << "Square root of fraction2: ";
-    squareRooted.display();
-
-    return 0;
-}*/
